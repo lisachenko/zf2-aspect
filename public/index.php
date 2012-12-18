@@ -6,7 +6,7 @@
 chdir(dirname(__DIR__));
 
 // Setup autoloading
-require 'init_autoloader.php';
+require 'init_aspect.php';
 
 // Run the application!
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();
