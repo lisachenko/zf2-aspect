@@ -3,7 +3,7 @@
 use Aspect\DemoAspectKernel;
 
 // Prevent an error about nesting level
-ini_set('xdebug.max_nesting_level', 300);
+ini_set('xdebug.max_nesting_level', 500);
 
 include './vendor/lisachenko/go-aop-php/src/Go/Core/AspectKernel.php';
 include './aspect/Aspect/DemoAspectKernel.php';
@@ -15,7 +15,8 @@ DemoAspectKernel::getInstance()->init(array(
         'Aspect'           => realpath(__DIR__ . '/aspect/'),
         'Go'               => realpath(__DIR__ . '/vendor/lisachenko/go-aop-php/src'),
         'TokenReflection'  => realpath(__DIR__ . '/vendor/andrewsville/php-token-reflection/'),
-        'Doctrine\\Common' => realpath(__DIR__ . '/vendor/doctrine/common/lib/')
+        'Doctrine\\Common' => realpath(__DIR__ . '/vendor/doctrine/common/lib/'),
+        'Dissect'          => realpath(__DIR__ . '/vendor/jakubledl/dissect/src/'),
     ),
     // Default application directory
     'appDir' => __DIR__ ,
