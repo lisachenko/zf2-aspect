@@ -10,19 +10,17 @@ include './aspect/Aspect/DemoAspectKernel.php';
 
 // Initialize demo aspect container
 DemoAspectKernel::getInstance()->init(array(
-    // Configuration for autoload namespaces
-    'autoload' => array(
-        'Aspect'           => realpath(__DIR__ . '/aspect/'),
-        'Go'               => realpath(__DIR__ . '/vendor/lisachenko/go-aop-php/src'),
-        'TokenReflection'  => realpath(__DIR__ . '/vendor/andrewsville/php-token-reflection/'),
-        'Doctrine\\Common' => realpath(__DIR__ . '/vendor/doctrine/common/lib/'),
-        'Dissect'          => realpath(__DIR__ . '/vendor/jakubledl/dissect/src/'),
-    ),
-    // Default application directory
-    'appDir' => __DIR__ ,
-    // Cache directory for Go! generated classes
-    'cacheDir' => __DIR__ . '/data/cache/aspect',
+    'debug'         => false,
+    'appLoader'     => __DIR__ . '/init_autoloader.php',
+    'cacheDir'      => __DIR__ . '/data/cache/aspect',
     // Include paths for aspect weaving
-    'includePaths' => array(),
-    'debug' => true
+    'includePaths'  => array(),
+    // Configuration for autoload namespaces
+    'autoloadPaths' => array(
+        'Aspect'           => __DIR__ . '/aspect/',
+        'Go'               => __DIR__ . '/vendor/lisachenko/go-aop-php/src',
+        'TokenReflection'  => __DIR__ . '/vendor/andrewsville/php-token-reflection/',
+        'Doctrine\\Common' => __DIR__ . '/vendor/doctrine/common/lib/',
+        'Dissect'          => __DIR__ . '/vendor/jakubledl/dissect/src/',
+    ),
 ));

@@ -10,6 +10,6 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "dev-master",
-        "lisachenko/go-aop-php": "~0.2"
+        "lisachenko/go-aop-php": "~0.2@dev"
     }
 }
