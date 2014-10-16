@@ -10,6 +10,11 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "dev-master",
-        "lisachenko/go-aop-php": "~0.2@dev"
+        "lisachenko/go-aop-php": "~0.5.0@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Aspect\\" : "aspect"
+        }
     }
 }
