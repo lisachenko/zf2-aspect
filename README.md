@@ -1,52 +1,46 @@
-ZendSkeletonApplication
-=======================
+GO AOP PHP and ZF2
+==================
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+This module showcases a simple implementation of Go! AOP PHP into [ZendSkelettonApplication of ZF2](https://github.com/zendframework/ZendSkeletonApplication).
+It contains the full bootstrapping of ZF2 including a DemoAspect from which you'll be able to learn from.
 
+For more information on different aspects please see the [full documentation](http://go.aopphp.com/docs/).
 
 Installation
 ------------
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+The easiest way to get Go! running with ZF2 is to create a composer project using this repository. You're able to 
+create it as easily as running the following command in your CLI (assuming you have composer installed):
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project --repository-url="http://packages.zendframework.com" zendframework/skeleton-application path/to/install
+    composer create-project -s dev lisachenko/zf2-aspect
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
+The second option would be to clone this repository and run composer install.
 
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
+    git clone https://github.com/lisachenko/zf2-aspect && cd zf2-aspect && composer install
 
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
+Once you've done this you're good to go and test out the power of Go! within your known ZF2 environment.
 
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
+Enable AOP
+----------
 
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
+Per default this project is running the ZendSkelettonApplication without AOP enabled. To enable AOP all you have to
+do is to append ```?aspect``` to your URL. For example ```http://localhost:8080/?aspect```.
 
-You would then invoke `composer` to install dependencies per the previous
-example.
+To enable AOP by default with your own aspect, all you need to do is change the contents of ```public/index.php``` to
+the following:
 
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
+    <?php
+    /**
+     * This makes our life easier when dealing with paths. Everything is relative
+     * to the application root now.
+     */
+    chdir(dirname(__DIR__));
+    
+    // Setup autoloading
+    require 'init_aspect.php';
+    
+    // Run the application!
+    Zend\Mvc\Application::init(require 'config/application.config.php')->run();
 
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
-Virtual Host
-------------
-Afterwards, set up a virtual host to point to the public/ directory of the
-project and you should be ready to go!
+You should only do this for your own aspects though. The DemoAspect will match every function call and will echo its 
+hook. So disable the DemoAspect in ```aspect/DemoAspectKernel.php``` and you're good to go.
